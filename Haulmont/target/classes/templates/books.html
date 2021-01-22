@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:insert="blocks/header :: header"></header>
+	<div class="container">
+		<form action="/books/search" method="post" class="form-group">
+			<label for="search">Введите название книги</label>
+			<br/>
+			<input id="search" name="name" type="text" placeholder="Введите название" class="form-control">
+			<br/>
+			<button type="submit" class="btn btn-warning">Найти</button>
+			<br/>
+			<br/>
+			<br/>
+		</form>
+	</div>
+	
+		<div class="container-fluid d-flex h-100 justify-content-center align-items-center"><br/><br/><a href="book_add" class="btn btn-dark">Добавить книгу</a><br/><br/><br/></div>
+	<main role="main" class="container" th:each="book : ${books}">
+  <div class="jumbotron">
+    <b>Название книги</b><p class="lead" th:text="${book.name}"></p>
+    <b>Автор</b><p class="lead" th:text="${book.author}"/>
+    <b>Издатель</b><p class="lead" th:text="${book.publisher}"/>
+    <b>Жанр</b><p class="lead" th:text="${book.genre}"/>
+    <b>Год издания</b><p class="lead" th:text="${book.year}"/>
+    <b>Город</b><p class="lead" th:text="${book.city}"/>
+    <a class="btn btn-lg btn-primary" th:href="'/book/' + ${book.id} + '/edit'" role="button">Редактировать</a>
+  </div>
+	</main>
+	
+	<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

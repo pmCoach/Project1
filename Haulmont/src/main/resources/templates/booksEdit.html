@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:insert="blocks/header :: header"></header>
+	<div class="w-75 container-fluid d-flex justify-content-center align-items-center" th:each="book : ${book}">
+	<form method="post" class="form-group">
+		<input type="text" th:value="${book.name}" name="name" class="form-control" placeholder="введите название книги">
+		<br/>
+		<select class="form-control" name="author">
+			<option th:each="author : ${authors}" th:value="${author.name} + ' ' + ${author.secname[0]} + '. ' + ${author.patronymic[0]} + '.'" th:text="${author.name} + ' ' + ${author.secname[0]} + '. ' + ${author.patronymic[0]} + '.'"> 
+		</select>
+		<br/>
+		<select class="form-control" name="publisher">
+			<option th:each="publisher : ${publishers}" th:value="${publisher.name}" th:text="${publisher.name}"> 
+		</select>
+		<br/>
+		<select class="form-control" name="genre">
+			<option th:each="genre : ${genres}" th:text="${genre.name}" th:value="${genre.name}"> 
+		</select>
+		<br/>
+		<input type="text" th:value="${book.year}" class="form-control" name="year" placeholder="Введите год"/>
+		<br/>
+		<input type="text" th:value="${book.city}" class="form-control" name="city" placeholder="Введите город"/>
+		<br/>
+		<button type="submit" class="btn btn-success">Изменить запись</button>
+		<a class="btn btn-danger" th:href="'/book/' + ${book.id} + '/delete'">Удалить запись</a>
+	</form>
+	</div>
+	<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

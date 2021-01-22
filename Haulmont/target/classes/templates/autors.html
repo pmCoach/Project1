@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:insert="blocks/header :: header"></header>
+	<div class="container">
+		<form action="/autors/search" method="post" class="form-group">
+			<label for="search">Введите имя автора для поиска</label>
+			<input type="text" id="search" name="name" placeholder="Имя автора" class="form-control">
+			<br/>
+			<button type="submit" class="btn btn-warning">Найти</button>
+			<br/>
+			<br/>
+		</form>
+	</div>
+	
+	
+	<div class="container-fluid d-flex h-100 justify-content-center align-items-center"><br/><br/><a href="author_add" class="btn btn-dark">Добавить автора</a><br/><br/><br/><br/></div>
+	
+	<main role="main" class="container" >
+  <div class="jumbotron" th:each="author : ${authors}">
+    <h1 th:text="${author.name}"></h1>
+    <p class="lead" th:text="${author.secname} + '  ' + ${author.patronymic}"></p>
+    <a class="btn btn-lg btn-primary" th:href="'/update/' + ${author.id}" role="button">Редактировать</a>
+  </div>
+	</main>
+	
+	<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

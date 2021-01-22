@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:insert="blocks/header :: header"></header>
+	<div th:each="el : ${author}" class="w-75 container-fluid d-flex justify-content-center align-items-center">
+	<form method="post" class="form-group">
+		<label for="name">Имя</label>
+		<input type="text" name="name" th:value="${el.name}"  class="form-control" placeholder="Введите имя">
+		<br/>
+		<label for="secname">Фамилия</label>
+		<input type="text" name="secname" th:value="${el.secname}" class="form-control" placeholder="Введите фамилию">
+		<br/>
+		<label for="patronymic">Отчество</label>
+		<input type="text" name="patronymic" th:value="${el.patronymic}" class="form-control" placeholder="Введите отчество">
+		<br/>
+		<button type="submit" class="btn btn-success">Изменить запись</button>
+		<a class="btn btn-warning" th:href="'/delete/' + ${el.id}">Удалить запись</a>
+	</form>
+	</div>
+	
+	<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
